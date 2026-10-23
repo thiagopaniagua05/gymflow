@@ -1,0 +1,9 @@
+rules_version = '2';
+// Solo tu usuario puede leer y escribir (la creación de cuentas queda desactivada en Firebase).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
